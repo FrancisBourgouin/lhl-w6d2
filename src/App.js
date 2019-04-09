@@ -49,7 +49,8 @@ class App extends Component {
               className="collapse"
               aria-labelledby="headingTwo"
               data-parent="#quote-list"
-              aria-expanded="false">
+              aria-expanded="false"
+              style={{ height: '0px' }}>
               <div className="card-body">
                 <h4>Comments</h4>
 
@@ -89,6 +90,9 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <a href="/quotes/new" className="btn btn-primary">
+          Add Quote
+        </a>
       </div>
     );
   }

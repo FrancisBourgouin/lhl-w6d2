@@ -1,11 +1,20 @@
 import React from 'react';
 
 const AddQuote = props => {
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    // extracting the value from the input box
+    const inputQuote = event.target.elements.quote;
+
+    // Send the value to the App component
+  };
+
   return (
     <div className="container">
       <h1>Add a New Quote</h1>
 
-      <form method="post" action="/quotes">
+      <form onSubmit={handleSubmit}>
         <div style={{ width: '20em' }}>
           <div className="form-group">
             <input

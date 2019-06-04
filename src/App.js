@@ -9,23 +9,31 @@ class App extends Component {
     this.state = { quotes: [] };
   }
 
+  addQuote = quoteContent => {
+    // create a post request to the database
+
+    // the db is going to return a full quote object
+
+    // Add the new quote obj to the state
+    this.setState({ quotes: [...this.state.quotes, quoteContent] });
+  };
+
   componentDidMount() {
     // fetch request to get the data from db
 
-    fetch('http://localhost:8000/quotes')
+    fetch('/quotes')
       .then(result => result.json())
+      // we need update the state
       .then(quoteArr => this.setState({ quotes: quoteArr }))
       .catch(error => console.log('Error:', error))
       .finally(() => console.log('fetch quotes request completed.'));
-
-    // we need update the state
   }
 
   render() {
     return (
       <div className="container">
         <h1>Movie Quotes</h1>
-        <QuoteList />
+        <QuoteList quotes={this.state.quotes} />
         <AddQuote />
       </div>
     );

@@ -9,13 +9,22 @@ class App extends Component {
     this.state = { quotes: [] };
   }
 
-  addQuote = quoteContent => {
+  addNewQuote = quoteContent => {
     // create a post request to the database
 
-    // the db is going to return a full quote object
+    const newQuote = {
+      quote: quoteContent,
+    };
 
-    // Add the new quote obj to the state
-    this.setState({ quotes: [...this.state.quotes, quoteContent] });
+    fetch('/quotes', {
+      method: 'POST',
+      body: JSON.stringify(newQuote),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(response => response.json())
+      // the db is going to return a full quote object
+      // Add the new quote obj to the state
+      .then(quote => this.setState({ quotes: [quote, ...this.state.quotes] }));
   };
 
   componentDidMount() {
@@ -34,7 +43,7 @@ class App extends Component {
       <div className="container">
         <h1>Movie Quotes</h1>
         <QuoteList quotes={this.state.quotes} />
-        <AddQuote />
+        <AddQuote addNewQuote={this.addNewQuote} />
       </div>
     );
   }

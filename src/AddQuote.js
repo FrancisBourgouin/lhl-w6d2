@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddQuote = props => {
+const AddQuote = ({ addNewQuote }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -8,6 +8,7 @@ const AddQuote = props => {
     const inputQuote = event.target.elements.quote;
 
     // Send the value to the App component
+    addNewQuote(inputQuote.value);
   };
 
   return (
